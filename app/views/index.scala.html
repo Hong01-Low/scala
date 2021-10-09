@@ -1,7 +1,6 @@
 @()
 
-@main("Login") {
-<!--suppress ALL -->
+@main("Home") {
 <html>
 <head>
     <style>
@@ -10,20 +9,8 @@
         }
       </style>
 </head>
-<body>
-<form action="@controllers.routes.HomeController.list()" method="post">
-    <h1>Provide your information</h1>
+    <h1>Welcome to MICKEY HOTEL</h1>
+    <li><a href = "@routes.HomeController.index()" style="text-decoration:none">Home</a></li>
     <li><a href = "@routes.HomeController.list()" style="text-decoration:none">All Users</a></li>
-    <li><a href = "@routes.HomeController.index()" style="text-decoration:none">Create User</a></li>
-    <fieldset>
-        <legend>Personal information:</legend>
-        <p>First name:<br><input type="text" id="T1" name="T1" size="15"></p>
-        <p>Last name:<br><input type="text" id="T2" name="T2" size="30"></p>
-        <p>Email:<br><input type="password" id="T4" name="T4" size="50"></p>
-        <p>Date of birth:<br><input type="date" id="date_f" name="date_f" placeholder="Date"></p>
-        <a href ="@controllers.routes.HomeController.list"><button type="submit" value="Update">Submit</button></a>
-        <button type="reset" value="Reset">Cancel</button>
-    </fieldset>
-</form>
-</body>
+    <li><a href = "@routes.HomeController.login()" style="text-decoration:none">Create User</a></li>
 </html>

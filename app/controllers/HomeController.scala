@@ -18,6 +18,9 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
+  def login(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.login())
+  }
   def list(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.list())
   }
