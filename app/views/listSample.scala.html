@@ -1,0 +1,33 @@
+@(samples:Seq[Sample])(implicit flash: Flash, request: RequestHeader)
+
+@main("Samples") {
+<head>
+  <style>
+        h1 { font: 50px Times New Roman; }
+         * { font: 20px Times New Roman; }
+        table { width: 70%; }
+        table, th, td { border: solid 1px #DDD;
+            border-collapse: collapse; padding: 2px 3px; text-align: center;
+        }
+      </style>
+</head>
+<h1>Employees Information</h1>
+
+@* Flash shows updates to a page *@
+@request.flash.data.map{ case (name, value) =>
+<div>@name: @value</div>
+}
+
+<table>
+  <thead>
+  <tr><th>Full Name</th><th>Emp Code</th><th>Salary</th><th>City</th></tr>
+  </thead>
+  <tbody>
+  @for(s <- samples) {
+  <tr><td>@s.fullName</td><td>@s.empCode</td><td>@s.salary</td><td>@s.city</td></td></tr>
+  }
+  </tbody>
+</table>
+
+<br><a href ="@routes.HomeController.createSample"><button>Create Sample</button></a>
+}

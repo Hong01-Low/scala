@@ -1,16 +1,10 @@
 @()
 
 @main("Home") {
-<html>
-<head>
-    <style>
-        h1 { font: 50px Times New Roman; }
-         * { font: 20px Times New Roman; }
-        }
-      </style>
-</head>
-    <h1>Welcome to MICKEY HOTEL</h1>
-    <li><a href = "@routes.HomeController.index()" style="text-decoration:none">Home</a></li>
-    <li><a href = "@routes.HomeController.list()" style="text-decoration:none">All Users</a></li>
-    <li><a href = "@routes.HomeController.login()" style="text-decoration:none">Create User</a></li>
-</html>
+<div>
+    <ul>
+        <h1>Welcome to Amaseng Sdn Bhd</h1>
+        <h2>Please go to <a href="@routes.HomeController.listSample">@routes.HomeController.listSample</a></h2>
+    </ul>
+</div>
+}

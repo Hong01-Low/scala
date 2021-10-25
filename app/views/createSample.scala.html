@@ -1,0 +1,27 @@
+@()
+
+@main("Create") {
+
+<html>
+<head>
+    <style>
+        h1 { font: 50px Times New Roman; }
+         * { font: 20px Times New Roman; }
+        }
+      </style>
+</head>
+<body>
+<form action="@controllers.routes.HomeController.listSample" method="POST">
+    <h1>Provide your information</h1>
+    <fieldset>
+        <legend>Personal information:</legend>
+        <p>Full Name:<br><input type="text" id="fullName" name="fullName" size="30"></p>
+        <p>EMP Code:<br><input type="text" id="empCode" name="empCode" size="10"></p>
+        <p>Salary:<br><input type="text" id="salary" name="salary" size="15"></p>
+        <p>City:<br><input type="text" id="city" name="city" size="50"></p>
+        <a href ="@controllers.routes.HomeController.listSample"><button type="submit" value="Update">Submit</button></a>
+        <button type="reset" value="Reset">Cancel</button>
+    </fieldset>
+</form>
+</body>
+</html>
