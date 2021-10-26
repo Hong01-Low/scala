@@ -3,7 +3,7 @@ package controllers
 import models.Sample
 import SampleForm.{Data, form}
 import play.api.data.Form
-
+import play.api.data.Forms._
 import javax.inject._
 import play.api.mvc.{Action, _}
 
@@ -30,24 +30,48 @@ class HomeController @Inject()(cc: ControllerComponents) (implicit assetsFinder:
     Sample("Shantini", 1003, 1200, "Kepong")
   )
 
-  private val postUrl = routes.HomeController.createSample
+  private val postUpdate = routes.HomeController.editSample
 
   def index(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
 
   def listSample(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.listSample(samples.toSeq, postUrl))
+    Ok(views.html.listSample(samples.toSeq))
   }
 
   def createSample(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.createSample())
   }
 
-  val successFunction = { data: Data =>
-    // This is the good case, where the form was successfully parsed as a Data object.
-    val sampleData = Sample(fullName = data.fullName, empCode = data.empCode, salary = data.salary, city = data.city)
-    samples += Sample
-    Redirect(routes.HomeController.listSample).flashing("note" -> "Personal Details added!")
+  def editSample(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.editSample())
+  }
+
+  val form = Form(
+    mapping(
+      "fullName" -> nonEmptyText,
+      "empCode" -> number(min = 0),
+      "salary" -> number(min = 0),
+      "city" -> nonEmptyText
+    )(Data.apply)(Data.unapply)
+  )
+
+  def save = Action { implicit request: Request[AnyContent] =>
+    form.bindFromRequest().fold(
+      hasErrors = { form =>
+        println("error: " + form)
+        Redirect(routes.HomeController.createSample)
+      },
+      success = { data =>
+        samples += Sample(data.fullName, data.empCode, data.salary, data.city)
+        Redirect(routes.HomeController.listSample)
+      }
+    )
+  }
+
+  def edit(code: Int): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    println(code)
+    Redirect(routes.HomeController.editSample)
   }
 }

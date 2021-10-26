@@ -20,11 +20,11 @@
 
 <table>
   <thead>
-  <tr><th>Full Name</th><th>Emp Code</th><th>Salary</th><th>City</th></tr>
+  <tr><th>Full Name</th><th>Emp Code</th><th>Salary</th><th>City</th><th>Action</th></tr>
   </thead>
   <tbody>
   @for(s <- samples) {
-  <tr><td>@s.fullName</td><td>@s.empCode</td><td>@s.salary</td><td>@s.city</td></td></tr>
+  <tr><td>@s.fullName</td><td>@s.empCode</td><td>@s.salary</td><td>@s.city</td><td><a href = "@routes.HomeController.edit(s.empCode)"><button type = "reset" value = "Reset">Edit</button></a></td></tr>
   }
   </tbody>
 </table>
