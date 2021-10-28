@@ -11,6 +11,7 @@ GET     /sample                    controllers.HomeController.listSample
 GET     /sample/create             controllers.HomeController.createSample
 GET     /sample/edit               controllers.HomeController.editSample
 GET     /sample/edit/:code         controllers.HomeController.edit(code: Int)
+GET     /sample/delete/:code       controllers.HomeController.delete(code: Int)
 + nocsrf
 POST    /sample/post               controllers.HomeController.save
 

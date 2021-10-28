@@ -11,12 +11,10 @@
         }
       </style>
 </head>
-<h1>Employees Information</h1>
-
-@* Flash shows updates to a page *@
 @request.flash.data.map{ case (name, value) =>
 <div>@name: @value</div>
 }
+<h1>Employees Information</h1>
 
 <table>
   <thead>
@@ -24,7 +22,7 @@
   </thead>
   <tbody>
   @for(s <- samples) {
-  <tr><td>@s.fullName</td><td>@s.empCode</td><td>@s.salary</td><td>@s.city</td><td><a href = "@routes.HomeController.edit(s.empCode)"><button type = "reset" value = "Reset">Edit</button></a></td></tr>
+  <tr><td>@s.fullName</td><td>@s.empCode</td><td>@s.salary</td><td>@s.city</td><td><a href = "@routes.HomeController.edit(s.empCode)"><button type = "reset" value = "Reset">Edit</button></a>     <a href = "@routes.HomeController.delete(s.empCode)"><button type = "remove" value = "Remove">Delete</button></a></td></tr>
   }
   </tbody>
 </table>

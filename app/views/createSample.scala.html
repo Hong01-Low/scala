@@ -1,7 +1,17 @@
-@()
+@(form: Form[Sample])(implicit flash: Flash, request: RequestHeader)
 
 @main("Create") {
 
+@if(form.hasGlobalErrors) {
+@form.globalErrors.map { error: FormError =>
+<div>
+    @error.key: @error.message
+</div>
+}
+}
+@request.flash.data.map{ case (name, value) =>
+<div>@name: @value</div>
+}
 <html>
 <head>
     <style>
